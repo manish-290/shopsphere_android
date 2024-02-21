@@ -44,7 +44,10 @@ class _EditCategoryState extends State<EditCategory> {
     AppProvider appProvider= Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title:Text("Category edit"),
+        title:Text("Category edit",style:GoogleFonts.lato(
+          color:Colors.white,
+          fontWeight: FontWeight.bold
+        )),
         centerTitle:true,
         backgroundColor: const Color.fromARGB(255, 3, 51, 91),
       ),
@@ -102,7 +105,8 @@ class _EditCategoryState extends State<EditCategory> {
               child: Text("Update",
               style:GoogleFonts.lato(
                 fontWeight: FontWeight.bold,
-                fontSize: 20
+                fontSize: 20,
+                color: Colors.white
               )))
         ],
       )

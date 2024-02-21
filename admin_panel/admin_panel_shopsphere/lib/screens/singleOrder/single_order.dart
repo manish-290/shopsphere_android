@@ -32,7 +32,7 @@ class _SingleOrderWidgetState extends State<SingleOrderWidget> {
             Expanded(
               child: Container(
                 height: 120,
-                width: 120,
+                width: 125,
                 color: Color.fromARGB(255, 2, 35, 62).withOpacity(0.3),
                 child: Image.network(widget.orderModel.products.isNotEmpty
                     ? widget.orderModel.products[0]!.image
@@ -41,7 +41,7 @@ class _SingleOrderWidgetState extends State<SingleOrderWidget> {
             ),
           //from here
         Expanded(
-              flex: 2,
+              flex: 3,
               child: Container(
                 height: 245,
                 child: Padding(
