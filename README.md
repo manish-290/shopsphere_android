@@ -1,4 +1,4 @@
-![ImageSp](https://github.com/manish-290/shopsphere_android/assets/135929587/707aaccc-d45e-4edf-8eee-e9275cb2fccd)
+![ImageSp](https://github.com/manish-290/shopsphere_android/assets/135929587/707aaccc-d45e-4edf-8eee-e9275cb2fccd/height=100)
 ![chatbot](https://github.com/manish-290/shopsphere_android/assets/135929587/2fa53be0-4ea1-4c1e-83a6-22bfe5c2d6cd)
 ![homepage](https://github.com/manish-290/shopsphere_android/assets/135929587/4472869f-98e7-4e82-8e80-321b83d21adf)
 ![login](https://github.com/manish-290/shopsphere_android/assets/135929587/618465e5-a9b2-4194-b4ce-223d549c35bf)
