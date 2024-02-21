@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -5,10 +6,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_sphere/authentication_page/login.dart';
 import 'package:shop_sphere/authentication_page/signUp.dart';
+import 'package:shop_sphere/authentication_page/verifyEmail.dart';
 import 'package:shop_sphere/custom_bottom_bar/custom_bottom_bar.dart';
 import 'package:shop_sphere/firebase_helper/firebase_auth.dart';
 import 'package:shop_sphere/provider/app_provider.dart';
 import 'package:shop_sphere/splash_screen/splash_screen.dart';
+
+import 'Account_screen/support_tabs/support.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,20 +61,12 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin {
- 
- late final AnimationController _controller = AnimationController(
-  vsync: this,
-  duration: const Duration(seconds: 10))..repeat();
-  
-   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:Color.fromARGB(255, 101, 201, 191),
+        backgroundColor:Colors.white,
         body: SingleChildScrollView(
           child: Container(
             decoration: const BoxDecoration(
@@ -81,56 +77,26 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
             child: Column(
               children: [
                 Center(
-                  child: AnimatedBuilder(
-                    animation: _controller,
-                    builder: (BuildContext context,Widget? child){
-                      return RotationTransition(
-                        
-                        turns: _controller,
-                         child: ClipOval(
-                      child: Image.asset(
-                        'assets/images/shopsphere.png',
-                        height: 150,
-                        width: 250,
-                        fit: BoxFit.cover,
-                      ),
-                    ),);
-                     
-                    },
-                    
+                  child: Image.asset(
+                    'assets/images/final.png',
+                    scale:8,
+                    // height: 150,
+                    // width: 150,
+                    fit: BoxFit.cover,
                   ),
                 ),
-               const SizedBox(
-                  height: 75,
+
+
+                const SizedBox(
+                  height: 50,
                 ),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds){
-                        return const LinearGradient(
-                          colors: [Colors.black,Colors.white],
-                          begin: Alignment.topLeft,
-                          end:Alignment.bottomRight,
-                          tileMode: TileMode.mirror).createShader(bounds);
-                      },
-                      child:  Text(
-                        'WELCOME TO THE SHOPSPHERE. EXPERIENCE THE SHOPPING WITH EASE.',
-                        style: GoogleFonts.lato(
-                          color:Colors.white,
-                            fontSize: 20,
-                            letterSpacing: 2.0),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+
                   ),
                 ),
-                const SizedBox(height: 15),
-                ClipOval(
-                  child: Image.asset("assets/images/welcomeHome.png",
-                  height:170,
-                  width:250),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: GestureDetector(
@@ -138,17 +104,19 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => const signUp()));
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color:  Colors.black,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
+                    child:Padding(
+                      padding: const EdgeInsets.only(left:210.0,top:70),
+                      child: Container(
+                        width:150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.purple[300],
+                        ),
                         child: Center(
                           child: Text(
-                            'SHOP NOW!',
+                            'SIGN-UP',
                             style: GoogleFonts.lato(
-                                fontSize: 24,
+                                fontSize: 29,
                                 fontWeight: FontWeight.bold,
                                 color:   Colors.white),
                           ),

@@ -4,8 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:shop_sphere/authentication_page/login.dart';
-import 'package:shop_sphere/custom_bottom_bar/custom_bottom_bar.dart';
-import 'package:shop_sphere/main.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -62,7 +60,7 @@ Future checkEmailVerified() async{
   Widget build(BuildContext context) =>isEmailVerified
   ?const Login()
   :Scaffold(
-    backgroundColor: Colors.grey[800],
+    backgroundColor: Colors.grey[400],
     appBar: AppBar(
       centerTitle: true,
       backgroundColor: Colors.black.withOpacity(0.5),
@@ -79,7 +77,7 @@ Future checkEmailVerified() async{
           color:Colors.white
         )),
         Gutter(),
-        Icon(Icons.email,color:Colors.white)
+        Icon(Icons.email,color:Colors.green)
       ],
     ),
   ));

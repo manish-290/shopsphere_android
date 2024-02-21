@@ -24,6 +24,7 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
 
   FirebaseAuthHelper _auth = FirebaseAuthHelper();
+  bool isHidePassword = true;
 
   @override
   void dispose() {
@@ -59,9 +60,9 @@ class _LoginState extends State<Login> {
         title:Text("Success",style: GoogleFonts.lato(
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: const Color.fromARGB(255, 5, 238, 13)
+          color:  Colors.white
         ),),
-        icon: Icon(Icons.check_circle,color:const Color.fromARGB(255, 1, 245, 9)),
+        icon: Icon(Icons.check_circle,color:Colors.green[800]),
       ));
      
     });
@@ -78,10 +79,11 @@ class _LoginState extends State<Login> {
         return true;
       },
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 137, 137, 131),
+        backgroundColor: Colors.white,
+        // backgroundColor: Color.fromARGB(255, 137, 137, 131),
         appBar: AppBar(
           leading: Icon(Icons.login,color: Colors.white,),
-          title: Text('Login to ShopSphere',
+          title: Text('Login',
               style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.black,
           centerTitle: true,
@@ -93,7 +95,7 @@ class _LoginState extends State<Login> {
               Center(
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset('assets/images/shopsphere.png',
+                      child: Image.asset('assets/images/ImageSp.png',
                           width: 150))),
               SizedBox(
                 height: 50,
@@ -104,33 +106,31 @@ class _LoginState extends State<Login> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                        child: Container(
-                          decoration:BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) => value!.isEmpty
-                                ? "Please provide your email"
-                                : null,
-                            controller: emailController,
-                            onChanged: (val) {
-                              setState(() {
-                                email = val;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                                label: Text('Email',style:TextStyle(
-                                  color:Colors.grey
-                                )),
-                                labelStyle: GoogleFonts.lato(color: Colors.white),
-                                prefixIcon: Icon(
-                                  Icons.alternate_email,
-                                  color: Colors.black,
-                                )),
-                          ),
+                        child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) => value!.isEmpty
+                              ? "Please provide your email"
+                              : null,
+                          controller: emailController,
+                          onChanged: (val) {
+                            setState(() {
+                              email = val;
+                            });
+                          },
+                          decoration: InputDecoration(
+                              border:OutlineInputBorder(
+                                  borderSide: BorderSide(width: 2,style:BorderStyle.solid,color:Colors.black)
+                              ),
+                              label: Text('Email'),
+                              labelStyle: TextStyle(color: Color.fromARGB(206, 3, 70, 124)),
+                              hintText: 'Email@...',
+
+                              hintStyle: TextStyle(color: Colors.grey),
+
+                              prefixIcon: Icon(
+                                Icons.alternate_email,
+                                color: Colors.black,
+                              )),
                         ),
                       ),
                       SizedBox(
@@ -138,34 +138,39 @@ class _LoginState extends State<Login> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                        child: Container(
-                          decoration:BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            validator: (value) => (value!.length < 6)
-                                ? "Enter the correct password"
-                                : null,
-                            controller: passwordController,
-                            obscureText: true,
-                            onChanged: (val) {
-                              setState(() {
-                                password = val;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              border:InputBorder.none,
-                                label: Text('Password',style:TextStyle(
-                                  color:Colors.grey
-                                )),
-                                labelStyle: GoogleFonts.lato(color: Colors.white),
-                                prefixIcon: Icon(
-                                  Icons.lock,
-                                  color: Colors.black,
-                                )),
-                          ),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          validator: (value) => (value!.length < 6)
+                              ? "Enter the correct password"
+                              : null,
+                          controller: passwordController,
+                          obscureText: isHidePassword,
+                          onChanged: (val) {
+                            setState(() {
+                              password = val;
+                            });
+                          },
+                          decoration: InputDecoration(
+                              border:OutlineInputBorder(
+                                  borderSide: BorderSide(width: 2,color:Colors.black)
+                              ),
+                              label: Text('Password'),
+                              labelStyle: TextStyle(color: Color.fromARGB(206, 3, 70, 124)),
+                              hintText: 'p@ssword',
+                              hintStyle: TextStyle(color: Colors.grey),
+                              suffixIcon: MaterialButton(
+                                  child: isHidePassword
+                                      ? Icon(Icons.visibility_off)
+                                      : Icon(Icons.visibility),
+                                  onPressed: () {
+                                    setState(() {
+                                      isHidePassword = !isHidePassword;
+                                    });
+                                  }),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              )),
                         ),
                       ),
                     ],
@@ -229,19 +234,15 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(height: 10),
-              // Text(
-              //   error,
-              //   style: TextStyle(
-              //       color:  const Color.fromARGB(255, 246, 8, 8), fontSize: 18),
-              // ),
+
              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Do not have an Account?',
                       style: GoogleFonts.lato(
-                        color: Colors.white,
-                        fontSize: 12,
+                        color: Colors.black,
+                        fontSize: 14,
                       )),
                   TextButton(
                     onPressed: () {
@@ -251,9 +252,9 @@ class _LoginState extends State<Login> {
                     child: Text(
                       "SignUp",
                       style: GoogleFonts.lato(
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Colors.blue),
                     ),
                   )
                 ],

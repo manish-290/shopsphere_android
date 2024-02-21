@@ -17,7 +17,7 @@ class AppProvider with ChangeNotifier {
   UserModel get getUserInformation => _userModel!;
 
   //property to store the user id
-  late String _userId;
+   String _userId='';
   String get getUserId => _userId;
 
   void getUserInfo() async {

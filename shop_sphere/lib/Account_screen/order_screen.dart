@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +20,7 @@ class _OrderScreenState extends State<OrderScreen> {
       extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Order",style:TextStyle(
+        title: const Text("Order",style:TextStyle(
               fontWeight: FontWeight.bold,
           color:Colors.white,)),
         centerTitle: true,
@@ -31,12 +30,12 @@ class _OrderScreenState extends State<OrderScreen> {
           stream: FirebaseFirestoreHelper.instance.getUserOrder(context),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(
                 child: Text(
                   'Error: ${snapshot.error}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -44,9 +43,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
               );
             } else if (snapshot.data!.isEmpty || snapshot.data == null) {
-              return Center(
-                  child: Text('No Orders Found',
-                      style: TextStyle(
+              return const Center(
+                  child:  Text('No Orders Found',
+                      style:  TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                           fontSize: 24)));
@@ -63,11 +62,11 @@ class _OrderScreenState extends State<OrderScreen> {
                         padding: const EdgeInsets.all(14.0),
                         child: ExpansionTile(
                           childrenPadding: EdgeInsets.zero,
-                          collapsedShape: RoundedRectangleBorder(
+                          collapsedShape: const RoundedRectangleBorder(
                               side: BorderSide(
                                   width: 3,
                                   color: Color.fromARGB(255, 3, 56, 99))),
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               side: BorderSide(
                                   color: Color.fromARGB(255, 2, 53, 95),
                                   width: 3)),
@@ -104,13 +103,13 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       ? orderModel
                                                           .products[0]!.name
                                                       : "",
-                                                  style: TextStyle(
+                                                  style: const  TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 2, 35, 62),
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 19)),
-                                              SizedBox(
+                                             const SizedBox(
                                                 height: 5,
                                               ),
                                               Text(
@@ -131,7 +130,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 15)),
-                                              SizedBox(
+                                             const SizedBox(
                                                 height: 5,
                                               ),
                                               Text(
@@ -178,7 +177,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                             });
                                                           
                                                           }, 
-                                                          child: Text(" Order delivered",style:TextStyle(
+                                                          child: const Text(" Order delivered",style:TextStyle(
                                                             color:Colors.white,
                                                             fontWeight: FontWeight.bold
                                                           ))):SizedBox.fromSize(),

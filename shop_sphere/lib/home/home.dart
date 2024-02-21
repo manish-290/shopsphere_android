@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             backgroundColor: Color.fromARGB(255, 11, 62, 103),
-            title: const Text('Welcome to ShopSphere',
+            title: const Text(' ShopSphere Dashboard',
                 style: TextStyle(fontWeight: FontWeight.bold,color:Colors.white)),
             leading: const Icon(Icons.shopify_sharp,color:Colors.white),
         

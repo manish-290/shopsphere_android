@@ -3,13 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_sphere/cart_screen/cartItemCheckout/cart_item_checkout.dart';
 import 'package:shop_sphere/cart_screen/single_cart_item.dart';
-import 'package:shop_sphere/checkout/checkout.dart';
 import 'package:shop_sphere/provider/app_provider.dart';
 
-import '../model/product_model/product_model.dart';
 
 class CartScreen extends StatefulWidget {
-  CartScreen({super.key});
+  const CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -53,7 +51,7 @@ class _CartScreenState extends State<CartScreen> {
                             color: const Color.fromARGB(255, 5, 62, 108))),
                   ],
                 ),
-                SizedBox(height: 10),
+              const  SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
                     appProvider.clearBuyProducts();
@@ -88,13 +86,13 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height:20),
+              const  SizedBox(height:20),
               ],
             ),
           ),
         ),
         appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 2, 35, 62),
+            backgroundColor: const Color.fromARGB(255, 2, 35, 62),
             centerTitle: true,
             title: Text('My Cart',
                 style: GoogleFonts.lato(
@@ -102,13 +100,13 @@ class _CartScreenState extends State<CartScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white))),
         body: appProvider.getCartProductList.isEmpty
-            ? Center(child: Text("The Cart is Empty",style:TextStyle(
+            ? const Center(child: Text("The Cart is Empty",style:TextStyle(
                 fontWeight: FontWeight.bold
 
             )))
             : ListView.builder(
                 itemCount: appProvider.getCartProductList.length,
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 itemBuilder: (context, index) {
                   return SingleCartItem(
                     singleProduct: appProvider.getCartProductList[index],

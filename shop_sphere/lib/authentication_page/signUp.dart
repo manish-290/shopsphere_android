@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_sphere/authentication_page/login.dart';
 import 'package:shop_sphere/authentication_page/verifyEmail.dart';
@@ -29,6 +28,8 @@ class _signUpState extends State<signUp> {
   final TextEditingController passwordController = TextEditingController();
 
   FirebaseAuthHelper _auth = FirebaseAuthHelper();
+  bool isHidePasswordFirst = true;
+  bool isHidePasswordSecond = true;
 
   @override
   void dispose() {
@@ -41,30 +42,33 @@ class _signUpState extends State<signUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 137, 137, 131),
+      backgroundColor: Colors.white,
+      // backgroundColor: const Color.fromARGB(255, 137, 137, 131),
       appBar: AppBar(
-        leading: Icon(Icons.supervised_user_circle,color: Colors.white,),
+        leading: const Icon(Icons.supervised_user_circle,color: Colors.white,),
         backgroundColor: Colors.black,
         title:
-            Text('SignUp to ShopSphere', style: TextStyle(color: Colors.white)),
+            Text('Sign-Up', style: TextStyle(
+              fontWeight: FontWeight.bold,
+                color: Colors.white)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(40.0),
                 child: Image.asset(
-                  'assets/images/shopsphere.png',
+                  'assets/images/ImageSp.png',
                   width: 150,
                 ),
               ),
             ),
-            SizedBox(
+           const SizedBox(
               height: 20,
             ),
             Form(
@@ -73,33 +77,30 @@ class _signUpState extends State<signUp> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: TextFormField(
-                          validator: (value) =>
-                              value!.isEmpty ? "Enter your username!" : null,
-                          keyboardType: TextInputType.text,
-                          onChanged: (val) {
-                            setState(() {
-                              username = val;
-                            });
-                          },
-                          controller: usernameController,
-                          
-                          decoration: InputDecoration(
-                            border:InputBorder.none,
-                              label: Text('Username'),
-                              labelStyle: TextStyle(color: Color.fromARGB(255, 3, 70, 125)),
-                              hintText: 'Username',
-                              hintStyle: TextStyle(color: Colors.grey),
-                              prefixIcon: Icon(
-                                Icons.person,
-                                color: Colors.black,
-                              )),
-                        ),
+                      child: TextFormField(
+                        validator: (value) =>
+                            value!.isEmpty ? "Enter your username!" : null,
+                        keyboardType: TextInputType.text,
+                        onChanged: (val) {
+                          setState(() {
+                            username = val;
+                          });
+                        },
+                        controller: usernameController,
+
+                        decoration: const InputDecoration(
+
+                           border:OutlineInputBorder(
+                             borderSide: BorderSide(width: 2,color:Colors.black)
+                           ),
+                            label: Text('Username'),
+                            labelStyle: TextStyle(color: Color.fromARGB(255, 3, 70, 125)),
+                            hintText: 'Username',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.black,
+                            )),
                       ),
                     ),
                     SizedBox(
@@ -107,98 +108,104 @@ class _signUpState extends State<signUp> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: TextFormField(
-                          
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) =>
-                              value!.isEmpty ? "Provide your email!" : null,
-                          controller: emailController,
-                          onChanged: (val) {
-                            setState(() {
-                              email = val;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                              label: Text('Email'),
-                              labelStyle: TextStyle(color: Color.fromARGB(206, 3, 70, 124)),
-                              hintText: 'Email@...',
-                              
-                              hintStyle: TextStyle(color: Colors.grey),
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.black,
-                              )),
-                        ),
+                      child: TextFormField(
+
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) =>
+                            value!.isEmpty ? "Provide your email!" : null,
+                        controller: emailController,
+                        onChanged: (val) {
+                          setState(() {
+                            email = val;
+                          });
+                        },
+                        decoration: const InputDecoration(
+                            border:OutlineInputBorder(
+                                borderSide: BorderSide(width: 2,color:Colors.black)
+                            ),
+                            label: Text('Email'),
+                            labelStyle: TextStyle(color: Color.fromARGB(206, 3, 70, 124)),
+                            hintText: 'Email@...',
+
+                            hintStyle: TextStyle(color: Colors.grey),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.black,
+                            )),
                       ),
                     ),
-                    SizedBox(
+                 const SizedBox(
                       height: 20,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                      child: Container(
-                        decoration:BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          validator: (value) => (value!.length < 6)
-                              ? "Please fill password of at least 6 characters!"
-                              : null,
-                          controller: passwordController,
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() {
-                              password = val;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                              label: Text('Enter Password'),
-                              labelStyle: TextStyle(color: Color.fromARGB(218, 3, 64, 114)),
-                              prefixIcon: Icon(
-                                Icons.password_rounded,
-                                color: Colors.black,
-                              )),
-                        ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        validator: (value) => (value!.length < 6)
+                            ? "Please fill password of at least 6 characters!"
+                            : null,
+                        controller: passwordController,
+                        obscureText: isHidePasswordFirst,
+                        onChanged: (val) {
+                          setState(() {
+                            password = val;
+                          });
+                        },
+                        decoration:  InputDecoration(
+                            border:OutlineInputBorder(
+                                borderSide: BorderSide(width: 2,color:Colors.black)
+                            ),
+                            label: Text('Enter Password'),
+                            labelStyle: TextStyle(color: Color.fromARGB(218, 3, 64, 114)),
+                            suffixIcon:  MaterialButton(
+                                child: isHidePasswordFirst
+                                    ? Icon(Icons.visibility_off)
+                                    : Icon(Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    isHidePasswordFirst = !isHidePasswordFirst;
+                                  });
+                                }),
+                            prefixIcon: Icon(
+                              Icons.password_rounded,
+                              color: Colors.black,
+                            )),
                       ),
                     ),
-                    SizedBox(
+                   const SizedBox(
                       height: 20,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: TextFormField(
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() {
-                              password = val;
-                            });
-                          },
-                          keyboardType: TextInputType.text,
-                          validator: (value) => (value!.length < 6)
-                              ? "Please match your password!"
-                              : null,
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                              label: Text('Confirm Password'),
-                              labelStyle: TextStyle(color: Color.fromARGB(220, 4, 62, 109)),
-                              prefixIcon: Icon(Icons.password_sharp,
-                                  color: Colors.black)),
-                        ),
+                      child:  TextFormField(
+                        obscureText: isHidePasswordSecond,
+                        onChanged: (val) {
+                          setState(() {
+                            password = val;
+                          });
+                        },
+                        keyboardType: TextInputType.text,
+                        validator: (value) => (value!.length < 6)
+                            ? "Please match your password!"
+                            : null,
+                        controller: passwordController,
+                        decoration:  InputDecoration(
+                            border:OutlineInputBorder(
+                                borderSide: BorderSide(width: 2,color:Colors.black)
+                            ),
+                            label: Text('Confirm Password'),
+                            labelStyle: TextStyle(color: Color.fromARGB(220, 4, 62, 109)),
+                            suffixIcon:  MaterialButton(
+                                child: isHidePasswordSecond
+                                    ? Icon(Icons.visibility_off)
+                                    : Icon(Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    isHidePasswordSecond = !isHidePasswordSecond;
+                                  });
+                                }),
+                            prefixIcon: Icon(Icons.password_sharp,
+                                color: Colors.black)),
                       ),
                     ),
                   ],
@@ -228,9 +235,10 @@ class _signUpState extends State<signUp> {
                   }
                 },
                 child: Container(
+                  width: 150,
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 4, 50, 88),
-                      borderRadius: BorderRadius.circular(20)),
+                      ),
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -248,8 +256,8 @@ class _signUpState extends State<signUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Already have an account?',
-                    style: TextStyle(color: Colors.white, fontSize: 12)),
+                const Text('Already have an account?',
+                    style: TextStyle(color: Colors.black, fontSize: 12)),
                 TextButton(
                   onPressed: () {
                     Navigator.push(context,
@@ -258,9 +266,9 @@ class _signUpState extends State<signUp> {
                   child: Text(
                     "Login",
                     style: GoogleFonts.lato(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: Colors.blue),
                   ),
                 )
               ],

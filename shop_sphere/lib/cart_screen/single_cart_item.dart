@@ -52,8 +52,15 @@ void  showAlertDialog(BuildContext context) async{
   Widget build(BuildContext context) {
  AppProvider appProvider = Provider.of<AppProvider>(context);
     return Container(
-          margin: EdgeInsets.only(bottom: 12),
-          child:Row(
+      height:200,
+          margin: const EdgeInsets.only(bottom: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(
+              width: 3,
+              color: Color.fromARGB(255, 2, 35, 62))
+          ),
+          child: Row(
             children: [
               Expanded(
                 child:  Container(
@@ -65,10 +72,10 @@ void  showAlertDialog(BuildContext context) async{
                 ),
               ),
     
-               Expanded(
+                Expanded(
                 flex: 2,
                 child: Container(
-                  height: 145,
+                  // height: 145,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -134,7 +141,7 @@ void  showAlertDialog(BuildContext context) async{
                           ],
                         ),
                         
-                        Row(
+                        Column(
                           
                           children: [
                           Padding(
@@ -176,7 +183,7 @@ void  showAlertDialog(BuildContext context) async{
 
                           //  showAlertDialog(context); 
                           },
-                           child: Icon(Icons.delete,color:Colors.white))
+                           child: Icon(Icons.delete,color:Colors.white,))
                         ],),
                         
                       ],),
@@ -193,12 +200,6 @@ void  showAlertDialog(BuildContext context) async{
                 ),
               ),
             ],
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.0),
-            border: Border.all(
-              width: 3,
-              color: Color.fromARGB(255, 2, 35, 62))
           ),
         );
   }

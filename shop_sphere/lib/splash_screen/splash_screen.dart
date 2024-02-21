@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen>
           gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [Colors.blue, Colors.green],
+        colors: [Colors.blue, Colors.purple],
       ),
         ),
         child: Center(
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen>
             opacity: _controller,
             child:ClipOval(
               child: Image.asset(
-                'assets/images/shopsphere.png',scale:12
+                'assets/images/ImageSp.png',scale:20
               ),
             )
           ),

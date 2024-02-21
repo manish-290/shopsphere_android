@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_sphere/custom_bottom_bar/custom_bottom_bar.dart';
 import 'package:shop_sphere/firebase_helper/firestore_helper.dart';
-import 'package:shop_sphere/model/product_model/product_model.dart';
 import 'package:shop_sphere/provider/app_provider.dart';
 
 import '../../stripe_payment/stripe_payment.dart';
@@ -54,7 +52,7 @@ void showSnackBar( BuildContext context, String message) {
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Column(
             children: [
-              SizedBox(
+             const SizedBox(
                 height: 25,
               ),
               Container(
@@ -81,20 +79,20 @@ void showSnackBar( BuildContext context, String message) {
                         });
                       }),
                   ),
-                    Padding(
-                      padding: const EdgeInsets.only(right:8.0),
+                    const Padding(
+                      padding:  EdgeInsets.only(right:8.0),
                       child: Icon(Icons.money),
                     ),
                 ],)
               ),
-              SizedBox(
+             const SizedBox(
                 height: 36,
               ),
               Container(
-                child: Row(children: [
+                child:  Row(children: [
                   Expanded(
-                    child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 124, 5, 243),
+                    child:  RadioListTile(
+                                  activeColor:  Color.fromARGB(255, 124, 5, 243),
                   
                       value: "Pay Online",
                       title: GestureDetector(
