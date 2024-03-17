@@ -32,7 +32,16 @@ class OrderList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 2, 52, 92),
+         backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
         title: Text('Order List',style:TextStyle(color:Colors.white)),
       ),
       body: getOrderList(appProvider).isEmpty

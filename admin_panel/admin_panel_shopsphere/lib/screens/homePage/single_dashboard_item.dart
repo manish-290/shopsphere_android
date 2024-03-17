@@ -18,6 +18,8 @@ class SingleDashItem extends StatelessWidget {
                           onTap: onPressed,
                           child: Container(
                             decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [Colors.blue,Colors.purple]),
                               borderRadius: BorderRadius.circular(10),
                                color:Colors.blue.withOpacity(0.5),
                             ),
@@ -26,14 +28,15 @@ class SingleDashItem extends StatelessWidget {
                             children: [
                             Text(title,
                             style:GoogleFonts.lato(
-                              fontSize: 35,
-                              color:Color.fromARGB(255, 5, 109, 195),
+                              fontSize: 25,
+                              color:Colors.white,
+                              //Color.fromARGB(255, 5, 109, 195)
                               fontWeight: FontWeight.bold
                             )),
                              Text(subtitle,
                             style:GoogleFonts.lato(
-                              fontSize: 20,
-                              color: Colors.black,
+                              fontSize: 16,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold
                             ))
                            ],)

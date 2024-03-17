@@ -19,10 +19,24 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text("Order",style:TextStyle(
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                const Color.fromARGB(255, 3, 65, 115),
+                Color.fromARGB(255, 176, 5, 202)
+              ], // Add your desired colors here
+            ),
+          ),
+        ),
+        title: const Text("Order",
+            style: TextStyle(
               fontWeight: FontWeight.bold,
-          color:Colors.white,)),
+              color: Colors.white,
+            )),
         centerTitle: true,
       ),
       //i change futurebuilder to streambuilder and all set
@@ -44,13 +58,12 @@ class _OrderScreenState extends State<OrderScreen> {
               );
             } else if (snapshot.data!.isEmpty || snapshot.data == null) {
               return const Center(
-                  child:  Text('No Orders Found',
-                      style:  TextStyle(
+                  child: Text('No Orders Found',
+                      style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                           fontSize: 24)));
             } else {
-              
               return Padding(
                 padding: const EdgeInsets.only(bottom: 70.0),
                 child: ListView.builder(
@@ -87,7 +100,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               Expanded(
                                 flex: 2,
                                 child: Container(
-                                  height: 230,
+                                  height: 270,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -103,13 +116,13 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       ? orderModel
                                                           .products[0]!.name
                                                       : "",
-                                                  style: const  TextStyle(
+                                                  style: const TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 2, 35, 62),
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 19)),
-                                             const SizedBox(
+                                              const SizedBox(
                                                 height: 5,
                                               ),
                                               Text(
@@ -130,7 +143,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 15)),
-                                             const SizedBox(
+                                              const SizedBox(
                                                 height: 5,
                                               ),
                                               Text(
@@ -144,44 +157,67 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 15)),
-                                                      SizedBox(height: 10,),
-                                                      Column(children: [
-                                                       orderModel.status =="Pending"||
-                                                       orderModel.status=="Delivery"? ElevatedButton(
-                                                          style:ElevatedButton.styleFrom(
-                                                            primary: Colors.red
-                                                          ),
-                                                          onPressed: () async{
-                                                           await FirebaseFirestoreHelper.instance
-                                                            .updateOrder(orderModel, "Cancel");
-                                                            orderModel.status="Cancel";
-                                                            setState(() {
-                                                              
-                                                            });
-                                                          }, 
-                                                          child: Text("Cancel Order",style: TextStyle(
-                                                            color:Colors.white,
-                                                          ),)):SizedBox.fromSize(),
-                                                          
-                                                          orderModel.status =="Delivery"?
-                                                           ElevatedButton(
-                                                              style:ElevatedButton.styleFrom(
-                                                            primary: Colors.green
-                                                          ),
-                                                          onPressed: () async{
-                                                            await  FirebaseFirestoreHelper.instance
-                                                            .updateOrder(orderModel, "Completed");
-                                                            orderModel.status="Completed";
-                                                            setState(() {
-                                                              
-                                                            });
-                                                          
-                                                          }, 
-                                                          child: const Text(" Order delivered",style:TextStyle(
-                                                            color:Colors.white,
-                                                            fontWeight: FontWeight.bold
-                                                          ))):SizedBox.fromSize(),
-                                                      ],)
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Column(
+                                                children: [
+                                                  orderModel.status ==
+                                                              "Pending" ||
+                                                          orderModel.status ==
+                                                              "Delivery"
+                                                      ? ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                                  primary:
+                                                                      Colors
+                                                                          .red),
+                                                          onPressed: () async {
+                                                            await FirebaseFirestoreHelper
+                                                                .instance
+                                                                .updateOrder(
+                                                                    orderModel,
+                                                                    "Cancel");
+                                                            orderModel.status =
+                                                                "Cancel";
+                                                            setState(() {});
+                                                          },
+                                                          child: Text(
+                                                            "Cancel Order",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ))
+                                                      : SizedBox.fromSize(),
+                                                  orderModel.status ==
+                                                          "Delivery"
+                                                      ? ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                                  primary: Colors
+                                                                      .green),
+                                                          onPressed: () async {
+                                                            await FirebaseFirestoreHelper
+                                                                .instance
+                                                                .updateOrder(
+                                                                    orderModel,
+                                                                    "Completed");
+                                                            orderModel.status =
+                                                                "Completed";
+                                                            setState(() {});
+                                                          },
+                                                          child: const Text(
+                                                              " Order delivered",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)))
+                                                      : SizedBox.fromSize(),
+                                                ],
+                                              )
                                             ],
                                           ),
                                         ]),

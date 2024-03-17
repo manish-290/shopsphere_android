@@ -1,10 +1,14 @@
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:admin_panel_shopsphere/authentication%20page/admin-login.dart';
+import 'package:admin_panel_shopsphere/authentication%20page/verifyEmail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_sphere/authentication_page/login.dart';
-import 'package:shop_sphere/authentication_page/verifyEmail.dart';
 
-import '../firebase_helper/firebase_auth.dart';
+import '../helpers/firebase-auth.dart';
+// import 'package:shop_sphere/authentication_page/login.dart';
+// import 'package:shop_sphere/authentication_page/verifyEmail.dart';
+//
+// import '../firebase_helper/firebase_auth.dart';
 
 class signUp extends StatefulWidget {
   const signUp({super.key});
@@ -46,7 +50,7 @@ class _signUpState extends State<signUp> {
       // backgroundColor: const Color.fromARGB(255, 137, 137, 131),
       appBar: AppBar(
         leading: const Icon(Icons.supervised_user_circle,color: Colors.white,),
-        backgroundColor: Colors.transparent,
+         backgroundColor: Colors.transparent,
           flexibleSpace:Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -57,9 +61,9 @@ class _signUpState extends State<signUp> {
             ),
           ) ,
         title:
-            Text('Sign-Up', style: TextStyle(
-              fontWeight: FontWeight.bold,
-                color: Colors.white)),
+        Text(' Admin Sign-Up', style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -72,12 +76,12 @@ class _signUpState extends State<signUp> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(40.0),
                 child: Image.asset(
-                  'assets/images/ImageSp.png',
+                  'assets/images/app-icon.jpg',
                   width: 150,
                 ),
               ),
             ),
-           const SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Form(
@@ -88,7 +92,7 @@ class _signUpState extends State<signUp> {
                       padding: const EdgeInsets.symmetric(horizontal: 70.0),
                       child: TextFormField(
                         validator: (value) =>
-                            value!.isEmpty ? "Enter your username!" : null,
+                        value!.isEmpty ? "Enter your username!" : null,
                         keyboardType: TextInputType.text,
                         onChanged: (val) {
                           setState(() {
@@ -99,9 +103,9 @@ class _signUpState extends State<signUp> {
 
                         decoration: const InputDecoration(
 
-                           border:OutlineInputBorder(
-                             borderSide: BorderSide(width: 2,color:Colors.black)
-                           ),
+                            border:OutlineInputBorder(
+                                borderSide: BorderSide(width: 2,color:Colors.black)
+                            ),
                             label: Text('Username'),
                             labelStyle: TextStyle(color: Color.fromARGB(255, 3, 70, 125)),
                             hintText: 'Username',
@@ -121,7 +125,7 @@ class _signUpState extends State<signUp> {
 
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) =>
-                            value!.isEmpty ? "Provide your email!" : null,
+                        value!.isEmpty ? "Provide your admin email!" : null,
                         controller: emailController,
                         onChanged: (val) {
                           setState(() {
@@ -143,7 +147,7 @@ class _signUpState extends State<signUp> {
                             )),
                       ),
                     ),
-                 const SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(
@@ -181,7 +185,7 @@ class _signUpState extends State<signUp> {
                             )),
                       ),
                     ),
-                   const SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(
@@ -230,6 +234,7 @@ class _signUpState extends State<signUp> {
                       loading = true;
                     });
                     try {
+
                       dynamic result = await _auth.signup(email, password,username);
                       if (result == null) {
                         error = 'Please enter the valid email and password';
@@ -246,9 +251,9 @@ class _signUpState extends State<signUp> {
                 child: Container(
                   width: 150,
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 120, 14, 149),
-                      borderRadius: BorderRadius.circular(20),
-                      ),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(255, 127, 2, 96),
+                  ),
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -266,7 +271,7 @@ class _signUpState extends State<signUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Already have an account?',
+                const Text('Already have an Admin account?',
                     style: TextStyle(color: Colors.black, fontSize: 12)),
                 TextButton(
                   onPressed: () {

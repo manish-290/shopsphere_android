@@ -50,8 +50,10 @@ class FirebaseAuthHelper {
            //it converts the userModel data to json format
       _firestore.collection("users").doc(userModel.id).set(userModel.toJson());
       //create the new document for the user with uid
-      await DatabaseService(uid: user!.uid)
-          .updateUserData(email, '${password}', username);
+
+      //i have to monitor it
+      // await DatabaseService(uid: user!.uid)
+      //     .updateUserData(email, '${password}', username);
 
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (error) {

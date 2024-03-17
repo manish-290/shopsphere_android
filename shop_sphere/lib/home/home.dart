@@ -71,7 +71,16 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 11, 62, 103),
+            backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
             title: const Text(' ShopSphere Dashboard',
                 style: TextStyle(fontWeight: FontWeight.bold,color:Colors.white)),
             leading: const Icon(Icons.shopify_sharp,color:Colors.white),
@@ -102,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                               searchProduct(value);
                             },
                               decoration: InputDecoration(
-                                  fillColor: Colors.grey[400],
+                                  fillColor: Colors.grey[500],
                                   filled: true,
                                   icon: Icon(Icons.search),
                                   hintText: 'Search products',

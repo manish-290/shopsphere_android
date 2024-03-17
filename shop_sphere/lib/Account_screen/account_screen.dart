@@ -25,7 +25,16 @@ class _AccountScreenState extends State<AccountScreen> {
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 3, 57, 100),
+           backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
           title: Text("User Profile",
               style: GoogleFonts.lato(
                   color: Colors.white,

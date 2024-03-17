@@ -70,7 +70,7 @@ class _CartScreenState extends State<CartScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: const Color.fromARGB(255, 1, 64, 115),
+                      color: Color.fromARGB(255, 81, 2, 103),
                     ),
                     height: 50,
                     width: double.infinity,
@@ -92,11 +92,19 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
         appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 2, 35, 62),
+            backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
             centerTitle: true,
             title: Text('My Cart',
                 style: GoogleFonts.lato(
-                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white))),
         body: appProvider.getCartProductList.isEmpty

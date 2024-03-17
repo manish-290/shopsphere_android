@@ -48,6 +48,7 @@ dependencies:
   os: ^1.0.1
   firebase_analytics: ^10.8.0
   flutter_native_splash: ^2.3.10
+  flutter_gutter: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -39,7 +39,16 @@ void initState(){
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 2, 35, 62),
+        backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
         title:Text('Category',style:TextStyle(color:Colors.white))
       ),
       body:  isLoading ? Center(

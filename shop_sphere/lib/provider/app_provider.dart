@@ -24,7 +24,6 @@ class AppProvider with ChangeNotifier {
     UserModel userdata = 
     await FirebaseFirestoreHelper.instance.getUserInformation() ;
     _userId = userdata.id;
-    // _userModel = UserModel.fromJson(userdata.);
     _userModel = await FirebaseFirestoreHelper.instance.getUserInformation();
     notifyListeners();
   }

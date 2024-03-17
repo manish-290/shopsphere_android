@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:admin_panel_shopsphere/helpers/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../models/Admin_model.dart';
 import '../models/category_model.dart';
 import '../models/order_model.dart';
 import '../models/product_model/product_model.dart';
@@ -16,12 +17,27 @@ class FirebaseFirestoreHelper {
   Future<List<UserModel>> getUserList() async {
    try{
      QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await _firebaseFirestore.collection("users").get();
+        await _firebaseFirestore
+            .collection("users")
+            .get();
     return querySnapshot.docs.map(((e) => UserModel.fromJson(e.data()))).toList();
    }catch(e){
     print("Error fetching the list");
     return [];
    }
+  }
+
+
+
+  //get the admin information for account screen
+  Future<AdminModel> getAdminInformation() async {
+    DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+    await _firebaseFirestore
+        .collection("admin info")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    return AdminModel.fromJson(documentSnapshot.data()!);
   }
 
   Future<List<CategoryModel>> getCategoriesList() async {
@@ -43,7 +59,7 @@ class FirebaseFirestoreHelper {
   //delete single user
   Future<String> deleteSingleUser(String id) async {
     try {
-      //  await _firebaseFirestore.collection("users").doc(id).delete();
+       await _firebaseFirestore.collection("users").doc(id).delete();
       return "Successfully Deleted";
     } catch (e) {
       return e.toString();

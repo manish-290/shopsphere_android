@@ -36,10 +36,20 @@ TextEditingController textEditingController= TextEditingController();
     appProvider.getUserInfo();
     return Scaffold(
         appBar: AppBar(
+           backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
           centerTitle: true,
           title: Text("Edit Profile",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         ),
         body: ListView(
           padding: EdgeInsets.only(left: 80, right: 80),

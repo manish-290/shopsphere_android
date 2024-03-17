@@ -49,7 +49,16 @@ class _EditCategoryState extends State<EditCategory> {
           fontWeight: FontWeight.bold
         )),
         centerTitle:true,
-        backgroundColor: const Color.fromARGB(255, 3, 51, 91),
+         backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
       ),
       body:ListView(
         padding:EdgeInsets.symmetric(horizontal: 20,vertical:10),

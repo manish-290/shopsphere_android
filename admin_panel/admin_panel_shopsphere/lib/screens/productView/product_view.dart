@@ -21,7 +21,16 @@ class _ProductViewState extends State<ProductView> {
     AppProvider appProvider= Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 1, 42, 75),
+         backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
         title: Text('Product View',style: GoogleFonts.poppins(
           color:Colors.white
         ),),

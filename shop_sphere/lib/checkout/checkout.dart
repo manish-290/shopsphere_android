@@ -34,10 +34,19 @@ class _CheckoutState extends State<Checkout> {
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+           backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
           title: Text(
             "Checkout",
-            style: GoogleFonts.lato(fontWeight: FontWeight.bold, fontSize: 18),
+            style: GoogleFonts.lato(fontWeight: FontWeight.bold,color:Colors.white),
           ),
           centerTitle: true,
         ),
@@ -48,40 +57,40 @@ class _CheckoutState extends State<Checkout> {
               SizedBox(
                 height: 25,
               ),
-              Container(
-                  height: 80,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 5, 53, 93),
-                        width: 3,
-                      )),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: RadioListTile(
-                            activeColor: Color.fromARGB(255, 124, 5, 243),
-                            value: "Cash on Delivery",
-                            title: Text('Cash on Delivery',
-                                style: GoogleFonts.lato(
-                                    fontSize: 24, fontWeight: FontWeight.bold)),
-                            groupValue: selectedValue,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue = value as String;
-                              });
-                            }),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Icon(Icons.money),
-                      ),
-                    ],
-                  )),
-              SizedBox(
-                height: 36,
-              ),
+              // Container(
+              //     height: 80,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(10),
+              //         border: Border.all(
+              //           color: const Color.fromARGB(255, 5, 53, 93),
+              //           width: 3,
+              //         )),
+              //     child: Row(
+              //       children: [
+              //         Expanded(
+              //           child: RadioListTile(
+              //               activeColor: Color.fromARGB(255, 124, 5, 243),
+              //               value: "Cash on Delivery",
+              //               title: Text('Cash on Delivery',
+              //                   style: GoogleFonts.lato(
+              //                       fontSize: 24, fontWeight: FontWeight.bold)),
+              //               groupValue: selectedValue,
+              //               onChanged: (value) {
+              //                 setState(() {
+              //                   selectedValue = value as String;
+              //                 });
+              //               }),
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.only(right: 8.0),
+              //           child: Icon(Icons.money),
+              //         ),
+              //       ],
+              //     )),
+              // SizedBox(
+              //   height: 36,
+              // ),
               Container(
                 child:  Row(
                   children: [

@@ -58,7 +58,16 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Colors.black,
+           backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
             title: Text(
               "Change your password",
               style: GoogleFonts.lato(

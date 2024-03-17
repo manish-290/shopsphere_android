@@ -6,11 +6,14 @@ import 'package:admin_panel_shopsphere/helpers/firestore_helper.dart';
 import 'package:admin_panel_shopsphere/provider/app_provider.dart';
 import 'package:admin_panel_shopsphere/screens/homePage/home_page.dart';
 import 'package:admin_panel_shopsphere/screens/notificationScreen/notification_screen.dart';
+import 'package:admin_panel_shopsphere/splash-screen/splash-screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'helpers/firebase-auth.dart';
 
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
@@ -22,11 +25,7 @@ void main() async{
            storageBucket: "shopsphere-commerce.appspot.com",
           projectId: 'shopsphere-4ea75'):null);
           //for notification:
-  //          FirebaseMessaging messaging = FirebaseMessaging.instance;
-  // await messaging.requestPermission();
-  // String? token = await messaging.getToken();
-  // print('FCM Token: $token');
-          // await FirebaseApi().initNotifications();
+
   runApp(MyApp());
 }
 
@@ -43,7 +42,15 @@ class MyApp extends StatelessWidget {
         theme:ThemeData(
           primarySwatch: Colors.blue
         ),
-        home:HomePageAdmin()
+        home: StreamBuilder(
+            stream: FirebaseAuthHelper.instance.getAuthChange,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const HomePageAdmin();
+              } else {
+                return const SplashScreen();
+              }
+            })
       ),
     );
   }

@@ -14,19 +14,21 @@ class UserModel {
   String name;
   String email;
   String? notificationToken;
+  String password;
 
   UserModel(
       {required this.id,
       required this.image,
       required this.name,
        this.notificationToken,
-      required this.email});
+      required this.email, required this.password});
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
       id: json["id"],
       notificationToken: json["notificationToken"]??"",
       image: json["image"],
       name: json["name"],
+      password: json["password"],
       email: json["email"]);
 
   Map<String, dynamic> toJson() =>
@@ -42,6 +44,7 @@ class UserModel {
   }) =>
       UserModel(
           id: id,
+          password: password,
           name: name ?? this.name,
           image: image ?? this.image,
           email: email);

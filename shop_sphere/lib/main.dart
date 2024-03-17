@@ -1,18 +1,13 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_sphere/authentication_page/login.dart';
 import 'package:shop_sphere/authentication_page/signUp.dart';
-import 'package:shop_sphere/authentication_page/verifyEmail.dart';
 import 'package:shop_sphere/custom_bottom_bar/custom_bottom_bar.dart';
 import 'package:shop_sphere/firebase_helper/firebase_auth.dart';
 import 'package:shop_sphere/provider/app_provider.dart';
 import 'package:shop_sphere/splash_screen/splash_screen.dart';
-
-import 'Account_screen/support_tabs/support.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

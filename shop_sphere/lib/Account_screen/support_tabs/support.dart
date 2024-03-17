@@ -22,13 +22,13 @@ class _CustomerSupportState extends State<CustomerSupport>
         answer: 'To create an account, you have to go "Signup" Page, verify emails and login.'),
     FAQItem(
         question: 'What payment methods do you accept?',
-        answer: 'We accept Stripe payment methods for now.'),
+        answer: 'We accept Stripe payment gateway with CashAppPay and Credit Card payment for now.'),
     FAQItem(
         question: 'How can I contact the security team?',
         answer: 'For any queries or issues you can contact us at support@shopsphere.com'),
     FAQItem(
-        question: 'What are the listed product\'s catagories in such Application?',
-        answer: 'We have different catagories including Iphone Series, Androids, Laptops, Pendrives, Processors and many more.'),
+        question: 'What are the listed product\'s categories in such Application?',
+        answer: 'We have different categories including Iphone Series, Androids, Laptops, Pendrives, Processors and many more.'),
   ];
 
   TextEditingController _messageController = TextEditingController();
@@ -87,7 +87,16 @@ UserModel user =  UserModel(id: 'null', image: null, password: 'password', name:
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
         centerTitle: true,
         title: Text(
           "Customer Support",
@@ -189,6 +198,7 @@ UserModel user =  UserModel(id: 'null', image: null, password: 'password', name:
                             );
                           },
                         ),
+
                         if (_isBotResponding)
                           Center(
                             child: CircularProgressIndicator(
@@ -196,44 +206,49 @@ UserModel user =  UserModel(id: 'null', image: null, password: 'password', name:
                                   AlwaysStoppedAnimation<Color>(Colors.white),
                             ),
                           ),
-                        Container(
-                          margin: EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  controller: _messageController,
-                                  style: TextStyle(color: Colors.white),
-                                  decoration: InputDecoration(
-                                    hintText: "Type your queries...",
-                                    hintStyle: TextStyle(color: Colors.grey[900]),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 3, 51, 90),
-                                        width: 2,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: const Color.fromARGB(255, 2, 58, 103), width: 2),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  _simulateBotResponse(
-                                      _messageController.text);
-                                  FocusScope.of(context).unfocus();
-                                },
-                                icon: Icon(Icons.send, color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
+                       //here put you
+                        //code ok
                       ],
                     ),
+                  ),
+
+                ),
+                Container(
+                  margin: EdgeInsets.all(8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _messageController,
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            fillColor: Colors.black,
+                            filled: true,
+                            hintText: "Type your queries...",
+                            hintStyle: TextStyle(color: Colors.grey[300]),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 3, 51, 90),
+                                width: 2,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: const Color.fromARGB(255, 2, 58, 103), width: 2),
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          _simulateBotResponse(
+                              _messageController.text);
+                          FocusScope.of(context).unfocus();
+                        },
+                        icon: Icon(Icons.send, color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
               ],

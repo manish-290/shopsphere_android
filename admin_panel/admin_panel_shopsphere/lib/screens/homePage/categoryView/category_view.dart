@@ -37,7 +37,16 @@ class _CategoryViewState extends State<CategoryView> {
           ],
           title: Text('Category View',style:TextStyle(color:Colors.white)),
           centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 4, 65, 116),
+           backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
         ),
         body: Consumer<AppProvider>(builder: (context, value, child) {
           return SingleChildScrollView(

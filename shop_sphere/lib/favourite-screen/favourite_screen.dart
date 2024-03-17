@@ -22,7 +22,16 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     AppProvider appProvider =Provider.of<AppProvider>(context,listen:false);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 2, 35, 62),
+         backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
         centerTitle: true,
         title: Text('My Favourites',style:GoogleFonts.lato(
           fontSize: 20,

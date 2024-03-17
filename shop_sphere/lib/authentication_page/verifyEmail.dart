@@ -63,8 +63,20 @@ Future checkEmailVerified() async{
     backgroundColor: Colors.grey[400],
     appBar: AppBar(
       centerTitle: true,
-      backgroundColor: Colors.black.withOpacity(0.5),
-    title: Text('Verify Email'),
+       backgroundColor: Colors.transparent,
+          flexibleSpace:Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [const Color.fromARGB(255, 3, 65, 115), Color.fromARGB(255, 176, 5, 202)], // Add your desired colors here
+              ),
+            ),
+          ) ,
+    title: Text('Verify Email',style:TextStyle(
+      fontWeight: FontWeight.bold,
+      color:Colors.white
+    )),
   ),
   body:const Center(
     child: Column(
@@ -77,7 +89,7 @@ Future checkEmailVerified() async{
           color:Colors.white
         )),
         Gutter(),
-        Icon(Icons.email,color:Colors.green)
+        Icon(Icons.email,color:Colors.white)
       ],
     ),
   ));

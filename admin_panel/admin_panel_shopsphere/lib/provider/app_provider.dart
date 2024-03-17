@@ -3,8 +3,12 @@ import 'dart:io';
 
 import 'package:admin_panel_shopsphere/models/category_model.dart';
 import 'package:admin_panel_shopsphere/models/product_model/product_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../helpers/firebase_storage.dart';
 import '../helpers/firestore_helper.dart';
+import '../models/Admin_model.dart';
 import '../models/order_model.dart';
 import '../models/userModel/user_model.dart';
 
@@ -24,6 +28,24 @@ double totalEarning = 0.0;
   Future<void> getUserListFirebase() async {
     _userList = await FirebaseFirestoreHelper.instance.getUserList();
   _userToken = _userList.map((e) => e.notificationToken).toList();
+    notifyListeners();
+  }
+  UserModel? _userModel;
+  AdminModel? _adminModel;
+  AdminModel get getAdminInformation => _adminModel!;
+  UserModel get getUserInformation=> _userModel!;
+
+
+  //property to store the user id
+  final String _userId='';
+  String get getUserId => _userId;
+
+  void getAdminInfo() async {
+    AdminModel userdata =
+   _adminModel = await FirebaseFirestoreHelper.instance.getAdminInformation() ;
+    // _userId = userdata.id;
+    // // _userModel = UserModel.fromJson(userdata.);
+    // _userModel = await FirebaseFirestoreHelper.instance.getAdminInformation();
     notifyListeners();
   }
 
@@ -175,4 +197,6 @@ double totalEarning = 0.0;
     notifyListeners();
   
   }
+
+  //update user info
 }

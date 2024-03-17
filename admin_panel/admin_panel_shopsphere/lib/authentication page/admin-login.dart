@@ -1,9 +1,11 @@
+import 'package:admin_panel_shopsphere/authentication%20page/admin-signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_sphere/authentication_page/signUp.dart';
-import 'package:shop_sphere/custom_bottom_bar/custom_bottom_bar.dart';
-import 'package:shop_sphere/firebase_helper/firebase_auth.dart';
+
+
+import '../helpers/firebase-auth.dart';
+import '../screens/homePage/home_page.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -36,38 +38,38 @@ class _LoginState extends State<Login> {
   void getErrorOut(Error){
     setState(() {
       showDialog(
-        barrierColor: Colors.transparent,
-        context: context, 
-        builder: (context)=>AlertDialog(
-          icon: Icon(Icons.error,color: const Color.fromARGB(255, 244, 21, 5),),
-          backgroundColor: Color.fromARGB(111, 110, 164, 206),
-          title:Text('Failed',style:TextStyle(
-            fontWeight: FontWeight.bold,color: const Color.fromARGB(255, 248, 20, 3))),
-          content: Text(Error,style:TextStyle(color:const Color.fromARGB(255, 254, 20, 3))),
-        ));
+          barrierColor: Colors.transparent,
+          context: context,
+          builder: (context)=>AlertDialog(
+            icon: Icon(Icons.error,color: const Color.fromARGB(255, 244, 21, 5),),
+            backgroundColor: Color.fromARGB(111, 110, 164, 206),
+            title:Text('Failed',style:TextStyle(
+                fontWeight: FontWeight.bold,color: const Color.fromARGB(255, 248, 20, 3))),
+            content: Text(Error,style:TextStyle(color:const Color.fromARGB(255, 254, 20, 3))),
+          ));
     });
     Future.delayed(Duration(seconds: 2),(){
-           Navigator.of(context,rootNavigator: true).pop();
+      Navigator.of(context,rootNavigator: true).pop();
     });
   }
   void getSuccess(Error){
     setState(() {
       showDialog(
-        barrierColor: Colors.transparent,
-        context: context, builder: (context)=>AlertDialog(
+          barrierColor: Colors.transparent,
+          context: context, builder: (context)=>AlertDialog(
         backgroundColor: Color.fromARGB(111, 110, 164, 206),
         elevation: 10,
         title:Text("Success",style: GoogleFonts.lato(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color:  Colors.white
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color:  Colors.white
         ),),
         icon: Icon(Icons.check_circle,color:Colors.green[800]),
       ));
-     
+
     });
     Future.delayed(Duration(seconds: 2),(){
-           Navigator.of(context,rootNavigator: true).pop();
+      Navigator.of(context,rootNavigator: true).pop();
     });
   }
 
@@ -80,13 +82,11 @@ class _LoginState extends State<Login> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        // backgroundColor: Color.fromARGB(255, 137, 137, 131),
         appBar: AppBar(
           leading: Icon(Icons.login,color: Colors.white,),
-          title: Text('Login',
-              style: TextStyle(color: Colors.white)),
-
-          backgroundColor: Colors.transparent,
+          title: Text('Admin Login',
+              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+           backgroundColor: Colors.transparent,
           flexibleSpace:Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -96,7 +96,6 @@ class _LoginState extends State<Login> {
               ),
             ),
           ) ,
-          //Color.fromARGB(255, 120, 14, 149),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -106,7 +105,7 @@ class _LoginState extends State<Login> {
               Center(
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset('assets/images/ImageSp.png',
+                      child: Image.asset('assets/images/app-icon.jpg',
                           width: 150))),
               SizedBox(
                 height: 50,
@@ -195,9 +194,9 @@ class _LoginState extends State<Login> {
                   onTap: () async {
                     if (_formkey.currentState!.validate()) {
                       setState(() {
-                        isloading = true;                    
+                        isloading = true;
                       });
-                                        
+
 
                       try {
                         dynamic result = await _auth.login(email, password);
@@ -212,11 +211,11 @@ class _LoginState extends State<Login> {
                           setState(() async{
                             error = '';
                             getSuccess(error);
-                          await Future.delayed(Duration(seconds: 2));
+                            await Future.delayed(Duration(seconds: 2));
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CustomBottomBar()));
+                                    builder: (context) => HomePageAdmin()));
                           });
 
                           // Navigator.of(context).pop();
@@ -227,9 +226,10 @@ class _LoginState extends State<Login> {
                     }
                   },
                   child: Container(
+                    width:150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Color.fromARGB(255, 120, 14, 149),
+                      color: Color.fromARGB(255, 115, 3, 85),
                     ),
                     child: Center(
                       child: Padding(
@@ -246,11 +246,11 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 10),
 
-             
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Do not have an Account?',
+                  Text('Enter Admin Credentials?',
                       style: GoogleFonts.lato(
                         color: Colors.black,
                         fontSize: 14,
